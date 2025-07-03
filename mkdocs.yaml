@@ -1,8 +1,8 @@
-site_name: SATPLAN Benchmark Documentation
+site_name: SATPLAN Documentation
 site_author: Duncan Eddy
-site_description: SATPLAN - A Benchmark for Satellite Task Planning Algorithms
-site_url: https://github.com/duncaneddy/satplan
-repo_url: https://github.com/duncaneddy/satplan
+site_description: SATPLAN - A Toolbox for Satellite Task Planning Benchmarking
+site_url: https://github.com/duncaneddy/SATPLAN
+repo_url: https://github.com/duncaneddy/SATPLAN
 docs_dir: docs
 use_directory_urls: false
 
