@@ -9,3 +9,5 @@ on:
 jobs:
   update-docs:
     uses: ./.github/workflows/update_docs.yml
+    permissions:
+      contents: write

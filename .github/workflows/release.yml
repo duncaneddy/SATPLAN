@@ -64,6 +64,8 @@ jobs:
   update-docs:
     uses: ./.github/workflows/update_docs.yml
     needs: [ unit-tests, build_wheel, build_sdist ]
+    permissions:
+      contents: write
 
   upload_pypi:
     needs: [ build_sdist, build_wheel ]

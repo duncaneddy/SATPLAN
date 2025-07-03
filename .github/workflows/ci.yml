@@ -9,3 +9,5 @@ jobs:
   update-docs:
     uses: ./.github/workflows/update_docs.yml
     needs: [ test-package ]
+    permissions:
+      contents: write
