@@ -1,0 +1,11 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  test-package:
+    uses: ./.github/workflows/run_unit_tests.yml
+
+  update-docs:
+    uses: ./.github/workflows/update_docs.yml
+    needs: [ test-package ]

@@ -1,0 +1,71 @@
+[project]
+name = "satplan"
+version = "0.0.1"
+description = "SATPLAN is a package for training, benchmarking, and reference implementations for satellite task planning."
+readme = "README.md"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Duncan Eddy", email = "deddy@stanford.edu" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+satplan = "satplan.cli.main:main"
+
+[tool.setuptools]
+py-modules = ['satplan']
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*"]
+
+[tool.cibuildwheel]
+before-all = "uname -a"
+build-frontend = "build[uv]"
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "coverage>=7.9.1",
+    "coveralls>=4.0.1",
+    "mkdocs-git-revision-date-localized-plugin>=1.4.7",
+    "mkdocs-material>=9.6.15",
+    "mkdocs-section-index>=0.3.10",
+    "mkdocstrings-python>=1.16.12",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "ruff>=0.12.1",
+    "pre-commit>=4.2.0",
+    "mypy>=1.16.1",
+]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.format]
+indent-style = "space"
+docstring-code-format = true
+docstring-code-line-length = 20
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+exclude = ["tests"]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["src/satplan"]
+omit = [
+    "tests/*",
+    "*/conftest.py",
+]

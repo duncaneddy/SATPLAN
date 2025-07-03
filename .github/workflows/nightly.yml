@@ -1,0 +1,10 @@
+name: Nightly Tests and Coverage
+
+on:
+  schedule:
+    # This schedule will run the workflow every day at 9 am UTC (2 am Pacific Time)
+    - cron: '0 9 * * *'
+
+jobs:
+  test-package:
+    uses: ./.github/workflows/run_unit_tests.yml
