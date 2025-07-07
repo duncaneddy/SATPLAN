@@ -9,7 +9,7 @@
     <img src="https://github.com/duncaneddy/satplan/actions/workflows/ci.yml/badge.svg" alt="Test">
 </a>
 <a href='https://coveralls.io/github/duncaneddy/satplan?branch=main'><img src='https://coveralls.io/repos/github/duncaneddy/satplan/badge.svg?branch=main' alt='Coverage Status' /></a>
-<a href="https://sisl.github.io/astra-rl/index.html" target="_blank">
+<a href="https://duncaneddy.github.io/satplan/index.html" target="_blank">
     <img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Docs">
 </a>
 <a href="https://github.com/duncaneddy/satplan/blob/main/LICENSE" target="_blank">
