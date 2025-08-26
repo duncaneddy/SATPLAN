@@ -7,6 +7,9 @@ Thumbs.db
 .vscode/
 digest.txt
 
+# Data Sources
+images/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

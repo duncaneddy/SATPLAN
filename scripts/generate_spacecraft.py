@@ -1,6 +1,7 @@
 import sys
 import json
 import numpy as np
+import plotly.graph_objects as go
 from dataclasses import dataclass
 from loguru import logger
 
@@ -15,8 +16,6 @@ from satplan.constants import (
     EPOCH,
 )
 from satplan.utils import get_data_path
-
-IMAGES_DIR = "../images/satellites"
 
 # Setup logging
 logger.remove()
@@ -127,6 +126,149 @@ def generate_orbital_elements(
     return elements
 
 
+def plot_constellation_3d(
+    elements: list[tuple[int, OrbitalElements, str, str]],
+    inclination: float,
+    total_sats: int,
+    num_planes: int,
+    relative_spacing: int,
+    num_orbit_points: int = 100,
+) -> go.Figure:
+    """
+    Plot the Walker constellation in 3D using plotly.
+
+    Arguments:
+    - elements: List of orbital elements for each satellite
+    - inclination: Inclination angle of the satellites [degrees]
+    - total_sats: Total number of satellites (t)
+    - num_planes: Number of orbital planes (p)
+    - relative_spacing: Relative spacing parameter (f)
+    - num_orbit_points: Number of points per orbit for visualization
+
+    Returns:
+        Plotly 3D figure
+    """
+    fig = go.Figure()
+
+    # Add Earth sphere
+    u = np.linspace(0, 2 * np.pi, 50)
+    v = np.linspace(0, np.pi, 50)
+    x_earth = bh.R_EARTH / 1e3 * np.outer(np.cos(u), np.sin(v))
+    y_earth = bh.R_EARTH / 1e3 * np.outer(np.sin(u), np.sin(v))
+    z_earth = bh.R_EARTH / 1e3 * np.outer(np.ones(np.size(u)), np.cos(v))
+
+    fig.add_trace(
+        go.Surface(
+            x=x_earth,
+            y=y_earth,
+            z=z_earth,
+            colorscale=[[0, "lightblue"], [1, "lightblue"]],
+            showscale=False,
+            name="Earth",
+            opacity=0.8,
+        )
+    )
+
+    # Generate orbit traces for each satellite
+    colors = [
+        "red",
+        "blue",
+        "green",
+        "orange",
+        "purple",
+        "brown",
+        "pink",
+        "gray",
+        "olive",
+        "cyan",
+    ]
+    sats_per_plane = total_sats // num_planes
+
+    for sat_idx, element_data in enumerate(elements):
+        element = element_data[1]
+
+        plane_idx = sat_idx // sats_per_plane
+        color = colors[plane_idx % len(colors)]
+
+        # Generate mean anomaly values for complete orbit
+        mean_anomalies = np.linspace(0, 360, num_orbit_points)
+
+        orbit_x, orbit_y, orbit_z = [], [], []
+
+        for ma in mean_anomalies:
+            # Create temporary orbital elements with varying mean anomaly
+            temp_elements = (
+                element.sma,
+                element.ecc,
+                element.inc,
+                element.raan,
+                element.arg_perigee,
+                ma,
+            )
+
+            x, y, z = bh.sOSCtoCART(temp_elements, use_degrees=True)[0:3] / 1e3
+            orbit_x.append(x)
+            orbit_y.append(y)
+            orbit_z.append(z)
+
+        # Add orbit trace
+        fig.add_trace(
+            go.Scatter3d(
+                x=orbit_x,
+                y=orbit_y,
+                z=orbit_z,
+                mode="lines",
+                line=dict(color=color, width=3),
+                name=f"Plane {plane_idx + 1}, Sat {sat_idx % sats_per_plane + 1}",
+                showlegend=True,
+            )
+        )
+
+        # Add satellite position marker
+        sat_x, sat_y, sat_z = (
+            bh.sOSCtoCART(
+                [
+                    element.sma,
+                    element.ecc,
+                    element.inc,
+                    element.raan,
+                    element.arg_perigee,
+                    element.mean_anomaly,
+                ],
+                use_degrees=True,
+            )[0:3]
+            / 1e3
+        )
+
+        fig.add_trace(
+            go.Scatter3d(
+                x=[sat_x],
+                y=[sat_y],
+                z=[sat_z],
+                mode="markers",
+                marker=dict(color=color, size=8, symbol="diamond"),
+                name=f"Sat {sat_idx + 1} Position",
+                showlegend=False,
+            )
+        )
+
+    # Configure layout
+    max_range = (bh.R_EARTH / 1e3 + SATELLITE_ALTITUDE_KM) * 1.5
+    fig.update_layout(
+        title=f"Walker Constellation {inclination}°:{total_sats}/{num_planes}/{relative_spacing}",
+        scene=dict(
+            xaxis=dict(range=[-max_range, max_range], title="X [km]"),
+            yaxis=dict(range=[-max_range, max_range], title="Y [km]"),
+            zaxis=dict(range=[-max_range, max_range], title="Z [km]"),
+            aspectmode="cube",
+        ),
+        width=800,
+        height=800,
+    )
+
+    return fig
+
+
 def main() -> None:
     """
     Generate all constellations for SATPLAN benchmarks and save to JSON files.
@@ -206,6 +348,34 @@ def main() -> None:
             )
 
             # Plot Constellation
+            fig = plot_constellation_3d(sat_data, inclination, num_sats, p, f)
+
+            # Save figure to image
+            image_file_path = (
+                base_spacecraft_path.parent.parent.parent.parent
+                / "images"
+                / "satellites"
+                / incl_param.lower()
+                / f"spacecraft_{num_sats}_{incl_param.lower()}.png"
+            )
+
+            # Ensure save directory exists
+            if not image_file_path.parent.exists():
+                image_file_path.parent.mkdir(parents=True, exist_ok=True)
+
+            # Save as PNG, PDF, SVG, and HTML
+            pdf_file_path = image_file_path.with_suffix(".pdf")
+            svg_file_path = image_file_path.with_suffix(".svg")
+            html_file_path = image_file_path.with_suffix(".html")
+
+            fig.write_image(image_file_path)
+            fig.write_image(pdf_file_path)
+            fig.write_image(svg_file_path)
+            fig.write_html(html_file_path)
+
+            logger.info(
+                f"Saved {incl_param} - {num_sats} constellation plot to {image_file_path}"
+            )
 
 
 if __name__ == "__main__":
