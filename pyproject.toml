@@ -9,6 +9,10 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
+    "brahe",
+    "loguru>=0.7.3",
+    "plotly>=6.3.0",
+    "pydantic>=2.11.7",
     "typer>=0.16.0",
 ]
 
@@ -30,6 +34,9 @@ build-frontend = "build[uv]"
 
 [tool.uv]
 package = true
+
+[tool.uv.sources]
+brahe = { git = "https://github.com/duncaneddy/brahe", rev = "master" }
 
 [dependency-groups]
 dev = [
@@ -69,3 +76,4 @@ omit = [
     "tests/*",
     "*/conftest.py",
 ]
+

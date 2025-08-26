@@ -1,0 +1,28 @@
+{
+    "num_satellites": 1,
+    "num_planes": 1,
+    "plane_phasing": 0,
+    "walker_config": [
+        1,
+        1,
+        0
+    ],
+    "inclination": "MIO",
+    "altitude_km": 550.0,
+    "eccentricity": 0.001,
+    "arg_perigee": 0.0,
+    "spacecraft": [
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  53.0000   0.0000 0010000   0.0000   0.0000 15.05490874    05",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 53.0,
+            "raan_deg": 0.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 0.0
+        }
+    ]
+}

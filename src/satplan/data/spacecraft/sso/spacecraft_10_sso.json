@@ -1,0 +1,136 @@
+{
+    "num_satellites": 10,
+    "num_planes": 5,
+    "plane_phasing": 0,
+    "walker_config": [
+        10,
+        5,
+        0
+    ],
+    "inclination": "SSO",
+    "altitude_km": 550.0,
+    "eccentricity": 0.001,
+    "arg_perigee": 0.0,
+    "spacecraft": [
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929   0.0000 0010000   0.0000   0.0000 15.05490874    08",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 0.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 0.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929   0.0000 0010000   0.0000 180.0000 15.05490874    07",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 0.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 180.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929  72.0000 0010000   0.0000   0.0000 15.05490874    07",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 72.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 0.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929  72.0000 0010000   0.0000 180.0000 15.05490874    06",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 72.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 180.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929 144.0000 0010000   0.0000   0.0000 15.05490874    07",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 144.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 0.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929 144.0000 0010000   0.0000 180.0000 15.05490874    06",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 144.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 180.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929 216.0000 0010000   0.0000   0.0000 15.05490874    07",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 216.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 0.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929 216.0000 0010000   0.0000 180.0000 15.05490874    06",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 216.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 180.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929 288.0000 0010000   0.0000   0.0000 15.05490874    06",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 288.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 0.0
+        },
+        {
+            "id": 1,
+            "name": "Satellite 1",
+            "tle_line1": "1     1U          25  1.00000000  .00000000  00000-0  00000-0 0    02",
+            "tle_line2": "2     1  97.5929 288.0000 0010000   0.0000 180.0000 15.05490874    05",
+            "semimajor_axis": 6928136.3,
+            "eccentricity": 0.001,
+            "inclination_deg": 97.59287425682137,
+            "raan_deg": 288.0,
+            "arg_perigee_deg": 0.0,
+            "mean_anomaly_deg": 180.0
+        }
+    ]
+}

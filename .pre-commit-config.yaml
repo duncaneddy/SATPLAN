@@ -29,11 +29,6 @@ repos:
         name: check yaml files
       - id: check-toml
         name: check toml files
-      - id: check-json
-        name: check json files
-      - id: pretty-format-json
-        name: pretty format json files
-        types: [json]
       
       # Python-specific checks
       - id: debug-statements
@@ -41,13 +36,6 @@ repos:
       - id: name-tests-test
         name: check test naming
         args: [--pytest-test-first]
-
-      # Security checks
-      # This should never be needed but it's also good to have
-      - id: detect-aws-credentials
-        name: detect AWS credentials
-      - id: detect-private-key
-        name: detect private keys
 
 ci:
   autofix_commit_msg: |

@@ -100,3 +100,13 @@ uv run mkdocs serve
 ```
 
 This will build the documentation and start a local server. You can then view the documentation in your web browser.
+
+## Licenses
+
+This software for this project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The project makes use of Simplemaps' [World Cities Database](https://simplemaps.com/data/world-cities) which is 
+redistributed under the terms of the Creative Commons Attribution 4.0 license. As part of those license conditions
+the [full license](licenses/simplemaps_license.txt) is included in this repository. The original data has not been
+altered (from the May 11, 2025 release), though it has been reprocessed to help create some of the benchmarks
+included in this repository.
