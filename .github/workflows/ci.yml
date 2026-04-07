@@ -10,4 +10,5 @@ jobs:
     uses: ./.github/workflows/update_docs.yml
     needs: [ test-package ]
     permissions:
-      contents: write
+      pages: write
+      id-token: write

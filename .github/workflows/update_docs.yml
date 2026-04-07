@@ -1,5 +1,5 @@
-# This workflow will run only if the only changes made are in the docs folder.
-# This enables quick fixes to documentation to be deployed without running the entire test suite.
+# This workflow builds and deploys documentation using Zensical.
+# It uses GitHub's native Pages deployment pipeline via artifacts.
 
 name: Update Docs
 
@@ -9,11 +9,16 @@ jobs:
   publish-docs:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for accurate git revision dates
+
       - name: Install the latest version of uv and set the python version
         uses: astral-sh/setup-uv@v6
         with:
@@ -23,9 +28,13 @@ jobs:
         run: uv sync --all-extras --frozen
 
       - name: Build documentation
-        run: uv run --frozen mkdocs build
+        run: uv run --frozen zensical build
 
-      - name: Deploy documentation
-        run: uv run --frozen mkdocs gh-deploy --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
